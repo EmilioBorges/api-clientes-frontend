@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Clientes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Cadastro de Cliente</h1>
+        <p class="subtitle">Gerencie os clientes e seus endereços.</p>
+
+        <form id="cadastroForm">
+            <input type="hidden" id="usuarioId">
+
+            <div class="form-group">
+                <label for="nome">Nome Completo *</label>
+                <input type="text" id="nome" required placeholder="Ex: Maria Silva">
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail *</label>
+                <input type="email" id="email" required placeholder="Ex: maria@email.com">
+            </div>
+
+            <div class="form-group">
+                <label for="idade">Idade *</label>
+                <input type="number" id="idade" min="1" max="120" required placeholder="Ex: 28">
+            </div>
+
+            <div class="form-group">
+                <label for="telefone">Telefone *</label>
+                <input type="tel" id="telefone" required placeholder="Ex: (11) 99999-9999">
+            </div>
+
+            <div class="form-group">
+                <label for="senha">Senha <span id="senhaOpcionalText">*</span></label>
+                <div class="password-container">
+                    <input type="password" id="senha" placeholder="••••••••" style="padding-right: 40px;">
+                    <button type="button" id="btnToggleSenha" class="btn-toggle-senha" title="Mostrar/Ocultar Senha">👁️</button>
+                </div>
+                <span class="hint">Mínimo de 8 caracteres, 1 maiúscula, 1 número e 1 especial.</span>
+            </div>
+
+            <div class="actions-group">
+                <button type="button" id="btnAbrirModalEndereco" class="btn-secondary">➕ Cadastrar Endereço</button>
+                <button type="submit" id="btnSalvar" class="btn-primary">Cadastrar Usuário</button>
+                <button type="button" id="btnCancelarEdicao" class="btn-secondary" style="display: none;">Cancelar Edição</button>
+            </div>
+        </form>
+
+        <div id="feedback" class="feedback-message" role="alert"></div>
+
+        <div class="users-section">
+            <h2>Clientes Cadastrados</h2>
+            <div class="form-group search-group">
+                <label for="inputBusca">Pesquisar por Nome ou E-mail</label>
+                <div class="search-box">
+                    <input type="text" id="inputBusca" placeholder="Digite para buscar...">
+                    <button type="button" id="btnBuscar" class="btn-search">Buscar</button>
+                    <button type="button" id="btnLimparBusca" class="btn-clear-search">Limpar</button>
+                </div>
+            </div>
+            <div id="listaUsuarios"></div>
+        </div>
+    </div>
+
+    <!-- Modal de Endereço -->
+    <div id="modalEndereco" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="btnFecharModal">&times;</span>
+            <h2>Endereço do Cliente</h2>
+            
+            <form id="enderecoForm">
+                <div class="form-group">
+                    <label for="cep">CEP *</label>
+                    <input type="text" id="cep" placeholder="Ex: 01001000" maxlength="8" required>
+                </div>
+                <div class="form-group">
+                    <label for="logradouro">Logradouro *</label>
+                    <input type="text" id="logradouro" readonly required>
+                </div>
+                <div class="form-group">
+                    <label for="bairro">Bairro *</label>
+                    <input type="text" id="bairro" readonly required>
+                </div>
+                <div class="form-group">
+                    <label for="localidade">Cidade *</label>
+                    <input type="text" id="localidade" readonly required>
+                </div>
+                <div class="form-group">
+                    <label for="uf">UF *</label>
+                    <input type="text" id="uf" readonly required>
+                </div>
+                <div class="form-group">
+                    <label for="numero">Número do Imóvel *</label>
+                    <input type="text" id="numero" placeholder="Digite o número" required>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="submit" class="btn-primary" style="flex: 1;">Salvar Endereço</button>
+                    <button type="button" id="btnDeletarEndereco" class="btn-danger" style="display: none;">Excluir Endereço</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
